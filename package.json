@@ -30,6 +30,10 @@
     "hexo-util": "^2.2.0",
     "html-tag": "^2.0.0"
   },
+  "devDependencies": {
+    "@types/jest": "^27.5.2",
+    "ts-jest": "^27.1.5"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   }
