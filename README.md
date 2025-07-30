@@ -102,7 +102,7 @@ cdn:
 
 Below is a list of all available configuration options, which can be set in `_config.yml` or post front-matter. Most options support both full names (e.g., `brightness`) and aliases (e.g., `bri`) for compatibility with the CDN’s query parameters.
 
-- Please Follow: [/CONFIG.md](https://github.com/HSinghHira/hexo-adv-img-optimizer/blob/main/CONFIG.md)
+- Please Follow: [/CONFIG.md](https://github.com/HSinghHira/hexo-adv-img-optimizer/blob/main/CONFIG.MD)
 
 ### Notes
 

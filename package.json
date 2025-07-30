@@ -1,6 +1,6 @@
 {
   "name": "@HSinghHira/hexo-adv-img-optimizer",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": {
     "name": "Harman Singh Hira",
     "url": "https://me.hsinghhira.me"
@@ -35,6 +35,7 @@
     "ts-jest": "^27.1.5"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
   }
 }
