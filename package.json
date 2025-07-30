@@ -1,6 +1,6 @@
 {
   "name": "@HSinghHira/hexo-adv-img-optimizer",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "author": {
     "name": "Harman Singh Hira",
     "url": "https://me.hsinghhira.me"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HSinghHira/hexo-adv-img-optimizer.git"
+    "url": "git+https://github.com/HSinghHira/hexo-adv-img-optimizer"
   },
   "bugs": {
     "url": "https://github.com/HSinghHira/hexo-adv-img-optimizer/issues"
