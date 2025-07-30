@@ -299,7 +299,7 @@ function transformUrl(
   if (src.endsWith(".svg")) return src;
 
   if (!isNative) {
-    const params = { url: full_url_for(src), default: full_url_for(src) };
+    const params = { url: full_url_for.call(hexo, src), default: full_url_for.call(hexo, src) };
     if (width) {
       params.w = width;
       if (!custom.we && custom.we !== false) params.we = "";

@@ -26,6 +26,9 @@
     "hexo-plugin",
     "responsive-images"
   ],
+  "scripts": {
+    "push": "node publish.js && git add -A && git commit -m 'Update' && git push"
+  },
   "dependencies": {
     "hexo-util": "^2.2.0",
     "html-tag": "^2.0.0"
