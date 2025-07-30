@@ -17,193 +17,194 @@ function getCdnOptions(data) {
   const config = hexo.config.cdn || {};
   const postConfig = data.cdn || {};
   const options = {
-    height: postConfig.height || config.height || null,
+    height: postConfig.height ?? config.height ?? null,
     dpr:
-      postConfig.device_pixel_ratio ||
-      postConfig.dpr ||
-      config.device_pixel_ratio ||
-      config.dpr ||
+      postConfig.device_pixel_ratio ??
+      postConfig.dpr ??
+      config.device_pixel_ratio ??
+      config.dpr ??
       null,
-    fit: postConfig.fit || config.fit || null,
+    fit: postConfig.fit ?? config.fit ?? null,
     align:
-      postConfig.alignment ||
-      postConfig.a ||
-      config.alignment ||
-      config.a ||
+      postConfig.alignment ??
+      postConfig.a ??
+      config.alignment ??
+      config.a ??
       null,
     fpx:
-      postConfig.focal_point_x ||
-      postConfig.fpx ||
-      config.focal_point_x ||
-      config.fpx ||
+      postConfig.focal_point_x ??
+      postConfig.fpx ??
+      config.focal_point_x ??
+      config.fpx ??
       null,
     fpy:
-      postConfig.focal_point_y ||
-      postConfig.fpy ||
-      config.focal_point_y ||
-      config.fpy ||
+      postConfig.focal_point_y ??
+      postConfig.fpy ??
+      config.focal_point_y ??
+      config.fpy ??
       null,
-    crop: postConfig.crop || postConfig.c || config.crop || config.c || null,
-    precrop: postConfig.precrop || config.precrop || null,
-    trim: postConfig.trim || config.trim || null,
-    mask: postConfig.mask || config.mask || null,
+    crop: postConfig.crop ?? postConfig.c ?? config.crop ?? config.c ?? null,
+    precrop: postConfig.precrop ?? config.precrop ?? null,
+    trim: postConfig.trim ?? config.trim ?? null,
+    mask: postConfig.mask ?? config.mask ?? null,
     mtrim:
-      postConfig.mask_trim ||
-      postConfig.mtrim ||
-      config.mask_trim ||
-      config.mtrim ||
+      postConfig.mask_trim ??
+      postConfig.mtrim ??
+      config.mask_trim ??
+      config.mtrim ??
       null,
     mbg:
-      postConfig.mask_background ||
-      postConfig.mbg ||
-      config.mask_background ||
-      config.mbg ||
+      postConfig.mask_background ??
+      postConfig.mbg ??
+      config.mask_background ??
+      config.mbg ??
       null,
     quality:
-      postConfig.quality || postConfig.q || config.quality || config.q || null,
+      postConfig.quality ?? postConfig.q ?? config.quality ?? config.q ?? null,
     compression:
-      postConfig.compression ||
-      postConfig.l ||
-      config.compression ||
-      config.l ||
+      postConfig.compression ??
+      postConfig.l ??
+      config.compression ??
+      config.l ??
       null,
     lossless:
-      postConfig.lossless ||
-      postConfig.ll ||
-      config.lossless ||
-      config.ll ||
+      postConfig.lossless ??
+      postConfig.ll ??
+      config.lossless ??
+      config.ll ??
       null,
     bg:
-      postConfig.background ||
-      postConfig.bg ||
-      config.background ||
-      config.bg ||
+      postConfig.background ??
+      postConfig.bg ??
+      config.background ??
+      config.bg ??
       null,
     rbg:
-      postConfig.rotation_background ||
-      postConfig.rbg ||
-      config.rotation_background ||
-      config.rbg ||
+      postConfig.rotation_background ??
+      postConfig.rbg ??
+      config.rotation_background ??
+      config.rbg ??
       null,
-    blur: postConfig.blur || config.blur || null,
+    blur: postConfig.blur ?? config.blur ?? null,
     sharp:
-      postConfig.sharpen ||
-      postConfig.sharp ||
-      config.sharpen ||
-      config.sharp ||
+      postConfig.sharpen ??
+      postConfig.sharp ??
+      config.sharpen ??
+      config.sharp ??
       null,
     sharpf:
-      postConfig.sharpen_flat ||
-      postConfig.sharpf ||
-      config.sharpen_flat ||
-      config.sharpf ||
+      postConfig.sharpen_flat ??
+      postConfig.sharpf ??
+      config.sharpen_flat ??
+      config.sharpf ??
       null,
     sharpj:
-      postConfig.sharpen_jagged ||
-      postConfig.sharpj ||
-      config.sharpen_jagged ||
-      config.sharpj ||
+      postConfig.sharpen_jagged ??
+      postConfig.sharpj ??
+      config.sharpen_jagged ??
+      config.sharpj ??
       null,
     con:
-      postConfig.contrast ||
-      postConfig.con ||
-      config.contrast ||
-      config.con ||
+      postConfig.contrast ??
+      postConfig.con ??
+      config.contrast ??
+      config.con ??
       null,
     bri:
-      postConfig.brightness ||
-      postConfig.bri ||
-      config.brightness ||
-      config.bri ||
+      postConfig.brightness ??
+      postConfig.bri ??
+      config.brightness ??
+      config.bri ??
       null,
     gam:
-      postConfig.gamma || postConfig.gam || config.gamma || config.gam || null,
+      postConfig.gamma ?? postConfig.gam ?? config.gamma ?? config.gam ?? null,
     sat:
-      postConfig.saturation ||
-      postConfig.sat ||
-      config.saturation ||
-      config.sat ||
+      postConfig.saturation ??
+      postConfig.sat ??
+      config.saturation ??
+      config.sat ??
       null,
-    hue: postConfig.hue || config.hue || null,
+    hue: postConfig.hue ?? config.hue ?? null,
     mod:
-      postConfig.modulate ||
-      postConfig.mod ||
-      config.modulate ||
-      config.mod ||
+      postConfig.modulate ??
+      postConfig.mod ??
+      config.modulate ??
+      config.mod ??
       null,
-    tint: postConfig.tint || config.tint || null,
+    tint: postConfig.tint ?? config.tint ?? null,
     filt:
-      postConfig.filter ||
-      postConfig.filt ||
-      config.filter ||
-      config.filt ||
+      postConfig.filter ??
+      postConfig.filt ??
+      config.filter ??
+      config.filt ??
       null,
     start:
-      postConfig.filter_start ||
-      postConfig.start ||
-      config.filter_start ||
-      config.start ||
+      postConfig.filter_start ??
+      postConfig.start ??
+      config.filter_start ??
+      config.start ??
       null,
     stop:
-      postConfig.filter_stop ||
-      postConfig.stop ||
-      config.filter_stop ||
-      config.stop ||
+      postConfig.filter_stop ??
+      postConfig.stop ??
+      config.filter_stop ??
+      config.stop ??
       null,
     ro:
-      postConfig.rotation ||
-      postConfig.ro ||
-      config.rotation ||
-      config.ro ||
+      postConfig.rotation ??
+      postConfig.ro ??
+      config.rotation ??
+      config.ro ??
       null,
-    flip: postConfig.flip || config.flip || null,
-    flop: postConfig.flop || config.flop || null,
+    flip: postConfig.flip ?? config.flip ?? null,
+    flop: postConfig.flop ?? config.flop ?? null,
     output:
-      postConfig.output_format ||
-      postConfig.output ||
-      config.output_format ||
-      config.output ||
+      postConfig.output_format ??
+      postConfig.output ??
+      config.output_format ??
+      config.output ??
       null,
-    encoding: postConfig.encoding || config.encoding || null,
+    encoding: postConfig.encoding ?? config.encoding ?? null,
     we:
-      postConfig.without_enlargement ||
-      postConfig.we ||
-      config.without_enlargement ||
-      config.we ||
+      postConfig.without_enlargement ??
+      postConfig.we ??
+      config.without_enlargement ??
+      config.we ??
       null,
     af:
-      postConfig.adaptive_filter ||
-      postConfig.af ||
-      config.adaptive_filter ||
-      config.af ||
+      postConfig.adaptive_filter ??
+      postConfig.af ??
+      config.adaptive_filter ??
+      config.af ??
       null,
     il:
-      postConfig.interlace ||
-      postConfig.il ||
-      config.interlace ||
-      config.il ||
+      postConfig.interlace ??
+      postConfig.il ??
+      config.interlace ??
+      config.il ??
       null,
     maxage:
-      postConfig.max_age ||
-      postConfig.maxage ||
-      config.max_age ||
-      config.maxage ||
+      postConfig.max_age ??
+      postConfig.maxage ??
+      config.max_age ??
+      config.maxage ??
       null,
-    page: postConfig.page || config.page || null,
-    n: postConfig.n || config.n || null,
+    page: postConfig.page ?? config.page ?? null,
+    n: postConfig.n ?? config.n ?? null,
     filename:
-      postConfig.filename ||
-      config.filename ||
+      postConfig.filename ??
+      config.filename ??
       (data.title ? slugify(data.title) : null),
     default:
-      postConfig.default_image ||
-      postConfig.default ||
-      config.default_image ||
-      config.default ||
+      postConfig.default_image ??
+      postConfig.default ??
+      config.default_image ??
+      config.default ??
       "https://dynamic-og-image-generator.vercel.app/api/generate?title=Image+is+enjoying+vacation...&author=Harman+Singh+Hira&websiteUrl=%2F%2Fme.hsinghhira.me&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F11346694&theme=github",
   };
-  // Log options for debugging
-  console.log("CDN Options:", JSON.stringify(options, null, 2));
+  console.log("CDN Options (Global):", JSON.stringify(config, null, 2));
+  console.log("CDN Options (Post):", JSON.stringify(postConfig, null, 2));
+  console.log("CDN Options (Merged):", JSON.stringify(options, null, 2));
   return options;
 }
 
@@ -223,72 +224,73 @@ const exclude = config.exclude_domains;
 
 function createParams(base = {}, postOptions = {}) {
   const params = { ...base };
-  // Include all parameters, even if false or 0, unless explicitly null
-  if (postOptions.height !== null) params.h = postOptions.height;
-  if (postOptions.dpr !== null) params.dpr = postOptions.dpr;
-  if (postOptions.fit !== null) params.fit = postOptions.fit;
-  if (postOptions.align !== null) {
+  // Include all parameters unless explicitly undefined
+  if (postOptions.height !== undefined) params.h = postOptions.height;
+  if (postOptions.dpr !== undefined) params.dpr = postOptions.dpr;
+  if (postOptions.fit !== undefined) params.fit = postOptions.fit;
+  if (postOptions.align !== undefined) {
     params.a = postOptions.align;
     if (postOptions.align === "focal") {
-      if (postOptions.fpx !== null) params.fpx = postOptions.fpx;
-      if (postOptions.fpy !== null) params.fpy = postOptions.fpy;
+      if (postOptions.fpx !== undefined) params.fpx = postOptions.fpx;
+      if (postOptions.fpy !== undefined) params.fpy = postOptions.fpy;
     }
   }
-  if (postOptions.crop !== null) {
+  if (postOptions.crop !== undefined) {
     params.c =
       Array.isArray(postOptions.crop) && postOptions.crop.length === 4
         ? postOptions.crop.join(",")
         : postOptions.crop;
   }
-  if (postOptions.precrop !== null) {
+  if (postOptions.precrop !== undefined) {
     params.precrop =
       Array.isArray(postOptions.precrop) && postOptions.precrop.length === 4
         ? postOptions.precrop.join(",")
         : postOptions.precrop;
   }
-  if (postOptions.trim !== null) {
+  if (postOptions.trim !== undefined) {
     params.trim = postOptions.trim === true ? "" : postOptions.trim;
   }
-  if (postOptions.mask !== null) params.mask = postOptions.mask;
-  if (postOptions.mtrim !== null) params.mtrim = postOptions.mtrim;
-  if (postOptions.mbg !== null) params.mbg = postOptions.mbg;
-  if (postOptions.quality !== null) params.q = postOptions.quality;
-  if (postOptions.compression !== null) params.l = postOptions.compression;
-  if (postOptions.lossless !== null) params.ll = postOptions.lossless;
-  if (postOptions.bg !== null) params.bg = postOptions.bg;
-  if (postOptions.rbg !== null) params.rbg = postOptions.rbg;
-  if (postOptions.blur !== null) params.blur = postOptions.blur;
-  if (postOptions.sharp !== null) params.sharp = postOptions.sharp;
-  if (postOptions.sharpf !== null) params.sharpf = postOptions.sharpf;
-  if (postOptions.sharpj !== null) params.sharpj = postOptions.sharpj;
-  if (postOptions.con !== null) params.con = postOptions.con;
-  if (postOptions.bri !== null) params.bri = postOptions.bri;
-  if (postOptions.gam !== null) params.gam = postOptions.gam;
-  if (postOptions.sat !== null) params.sat = postOptions.sat;
-  if (postOptions.hue !== null) params.hue = postOptions.hue;
-  if (postOptions.mod !== null) {
+  if (postOptions.mask !== undefined) params.mask = postOptions.mask;
+  if (postOptions.mtrim !== undefined) params.mtrim = postOptions.mtrim;
+  if (postOptions.mbg !== undefined) params.mbg = postOptions.mbg;
+  if (postOptions.quality !== undefined) params.q = postOptions.quality;
+  if (postOptions.compression !== undefined) params.l = postOptions.compression;
+  if (postOptions.lossless !== undefined) params.ll = postOptions.lossless;
+  if (postOptions.bg !== undefined) params.bg = postOptions.bg;
+  if (postOptions.rbg !== undefined) params.rbg = postOptions.rbg;
+  if (postOptions.blur !== undefined) params.blur = postOptions.blur;
+  if (postOptions.sharp !== undefined) params.sharp = postOptions.sharp;
+  if (postOptions.sharpf !== undefined) params.sharpf = postOptions.sharpf;
+  if (postOptions.sharpj !== undefined) params.sharpj = postOptions.sharpj;
+  if (postOptions.con !== undefined) params.con = postOptions.con;
+  if (postOptions.bri !== undefined) params.bri = postOptions.bri;
+  if (postOptions.gam !== undefined) params.gam = postOptions.gam;
+  if (postOptions.sat !== undefined) params.sat = postOptions.sat;
+  if (postOptions.hue !== undefined) params.hue = postOptions.hue;
+  if (postOptions.mod !== undefined) {
     params.mod = Array.isArray(postOptions.mod)
       ? postOptions.mod.join(",")
       : postOptions.mod;
   }
-  if (postOptions.tint !== null) params.tint = postOptions.tint;
-  if (postOptions.filt !== null) params.filt = postOptions.filt;
-  if (postOptions.start !== null) params.start = postOptions.start;
-  if (postOptions.stop !== null) params.stop = postOptions.stop;
-  if (postOptions.ro !== null) params.ro = postOptions.ro;
-  if (postOptions.flip !== null) params.flip = postOptions.flip;
-  if (postOptions.flop !== null) params.flop = postOptions.flop;
-  if (postOptions.output !== null) params.output = postOptions.output;
-  if (postOptions.encoding !== null) params.encoding = postOptions.encoding;
-  if (postOptions.we !== null) params.we = postOptions.we;
-  if (postOptions.af !== null) params.af = postOptions.af;
-  if (postOptions.il !== null) params.il = postOptions.il;
-  if (postOptions.maxage !== null) params.maxage = postOptions.maxage;
-  if (postOptions.page !== null) params.page = postOptions.page;
-  if (postOptions.n !== null) params.n = postOptions.n;
-  if (postOptions.filename !== null) params.filename = postOptions.filename;
-  if (postOptions.default !== null) params.default = postOptions.default;
-  // Log parameters for debugging
+  if (postOptions.tint !== undefined) params.tint = postOptions.tint;
+  if (postOptions.filt !== undefined) params.filt = postOptions.filt;
+  if (postOptions.start !== undefined) params.start = postOptions.start;
+  if (postOptions.stop !== undefined) params.stop = postOptions.stop;
+  if (postOptions.ro !== undefined) params.ro = postOptions.ro;
+  if (postOptions.flip !== undefined) params.flip = postOptions.flip;
+  if (postOptions.flop !== undefined) params.flop = postOptions.flop;
+  if (postOptions.output !== undefined) params.output = postOptions.output;
+  if (postOptions.encoding !== undefined)
+    params.encoding = postOptions.encoding;
+  if (postOptions.we !== undefined) params.we = postOptions.we;
+  if (postOptions.af !== undefined) params.af = postOptions.af;
+  if (postOptions.il !== undefined) params.il = postOptions.il;
+  if (postOptions.maxage !== undefined) params.maxage = postOptions.maxage;
+  if (postOptions.page !== undefined) params.page = postOptions.page;
+  if (postOptions.n !== undefined) params.n = postOptions.n;
+  if (postOptions.filename !== undefined)
+    params.filename = postOptions.filename;
+  if (postOptions.default !== undefined) params.default = postOptions.default;
   console.log("URL Parameters:", JSON.stringify(params, null, 2));
   return params;
 }
@@ -309,21 +311,20 @@ function transformUrl(
       url: full_url_for.call(hexo, src),
       default: full_url_for.call(hexo, src),
     };
-    if (width) {
+    if (width !== undefined) {
       params.w = width;
       if (!custom.we && custom.we !== false) params.we = "";
     }
-    if (height) params.h = height;
-    if (format) params.output = format;
+    if (height !== undefined) params.h = height;
+    if (format !== undefined) params.output = format;
     const finalParams = { ...params, ...createParams(custom) };
-    // Log the final URL for debugging
     const url = prefix + stringify(finalParams);
     console.log("Generated URL:", url);
     return url;
   }
   let opts = "";
-  if (width) opts += `,fit=scale-down,w=${width}`;
-  if (height) opts += `,h=${height}`;
+  if (width !== undefined) opts += `,fit=scale-down,w=${width}`;
+  if (height !== undefined) opts += `,h=${height}`;
   return `/cdn-cgi/image/onerror=redirect,f=auto${opts}/${src}`;
 }
 
