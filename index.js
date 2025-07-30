@@ -3,6 +3,9 @@ const { stringify } = require("querystring");
 const { parse } = require("url");
 const htmlTag = require("html-tag");
 
+// Store post-specific CDN options
+const postCdnOptions = new Map();
+
 function slugify(str) {
   return str
     ? str
@@ -160,7 +163,6 @@ const exclude = config.exclude_domains;
 
 function createParams(base = {}, postOptions = {}) {
   const params = { ...base };
-  // Only include parameters with valid, non-undefined values
   if (postOptions.height != null) params.h = postOptions.height;
   if (postOptions.dpr != null) params.dpr = postOptions.dpr;
   if (postOptions.fit != null) params.fit = postOptions.fit;
@@ -289,6 +291,10 @@ if (!isNative) {
 
 hexo.extend.filter.register("before_post_render", (data) => {
   const postOptions = getCdnOptions(data);
+  // Store post-specific options with post path as key
+  if (data.path) {
+    postCdnOptions.set(data.path, postOptions);
+  }
   if (data.cover) {
     data.cover = transformUrl(data.cover, null, null, null, postOptions);
   }
@@ -340,13 +346,17 @@ hexo.extend.filter.register(
 
 hexo.extend.filter.register(
   "after_render:html",
-  (html) => {
+  (html, data) => {
     return html.replace(
       /<img(.*?)(data\-)?src="(.*?)"(.*?)>/gi,
       (str, attr1, _, src, attr2) => {
         if (/webp-comp/gi.test(attr1)) return str;
         let url = src;
-        const postOptions = getCdnOptions({});
+        // Try to find post-specific options based on post path
+        let postOptions = getCdnOptions({});
+        if (data && data.path) {
+          postOptions = postCdnOptions.get(data.path) || postOptions;
+        }
         if (!src.startsWith(prefix)) {
           const newUrl = transformUrl(src, null, null, null, postOptions);
           if (newUrl === src) return str;
