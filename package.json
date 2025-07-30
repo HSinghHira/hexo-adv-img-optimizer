@@ -1,6 +1,6 @@
 {
   "name": "@hsinghhira/hexo-adv-img-optimizer",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "author": {
     "name": "Harman Singh Hira",
     "url": "https://me.hsinghhira.me"
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/HSinghHira/hexo-adv-img-optimizer/issues"
   },
-  "homepage": "https://github.com/HSinghHira/hexo-adv-img-optimizer",
+  "homepage": "https://me.hsinghhira.me/Hexo-Advanced-Image-Optimizer-Plugin/",
   "keywords": [
     "hexo",
     "image",

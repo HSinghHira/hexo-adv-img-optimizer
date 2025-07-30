@@ -16,7 +16,7 @@ function slugify(str) {
 function getCdnOptions(data) {
   const config = hexo.config.cdn || {};
   const postConfig = data.cdn || {};
-  return {
+  const options = {
     height: postConfig.height || config.height || null,
     dpr:
       postConfig.device_pixel_ratio ||
@@ -202,6 +202,9 @@ function getCdnOptions(data) {
       config.default ||
       "https://dynamic-og-image-generator.vercel.app/api/generate?title=Image+is+enjoying+vacation...&author=Harman+Singh+Hira&websiteUrl=%2F%2Fme.hsinghhira.me&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F11346694&theme=github",
   };
+  // Log options for debugging
+  console.log("CDN Options:", JSON.stringify(options, null, 2));
+  return options;
 }
 
 const config = hexo.config.cdn || {};
@@ -220,23 +223,24 @@ const exclude = config.exclude_domains;
 
 function createParams(base = {}, postOptions = {}) {
   const params = { ...base };
-  if (postOptions.height) params.h = postOptions.height;
-  if (postOptions.dpr) params.dpr = postOptions.dpr;
-  if (postOptions.fit) params.fit = postOptions.fit;
-  if (postOptions.align) {
+  // Include all parameters, even if false or 0, unless explicitly null
+  if (postOptions.height !== null) params.h = postOptions.height;
+  if (postOptions.dpr !== null) params.dpr = postOptions.dpr;
+  if (postOptions.fit !== null) params.fit = postOptions.fit;
+  if (postOptions.align !== null) {
     params.a = postOptions.align;
     if (postOptions.align === "focal") {
-      if (postOptions.fpx) params.fpx = postOptions.fpx;
-      if (postOptions.fpy) params.fpy = postOptions.fpy;
+      if (postOptions.fpx !== null) params.fpx = postOptions.fpx;
+      if (postOptions.fpy !== null) params.fpy = postOptions.fpy;
     }
   }
-  if (postOptions.crop) {
+  if (postOptions.crop !== null) {
     params.c =
       Array.isArray(postOptions.crop) && postOptions.crop.length === 4
         ? postOptions.crop.join(",")
         : postOptions.crop;
   }
-  if (postOptions.precrop) {
+  if (postOptions.precrop !== null) {
     params.precrop =
       Array.isArray(postOptions.precrop) && postOptions.precrop.length === 4
         ? postOptions.precrop.join(",")
@@ -245,45 +249,47 @@ function createParams(base = {}, postOptions = {}) {
   if (postOptions.trim !== null) {
     params.trim = postOptions.trim === true ? "" : postOptions.trim;
   }
-  if (postOptions.mask) params.mask = postOptions.mask;
-  if (postOptions.mtrim) params.mtrim = postOptions.mtrim;
-  if (postOptions.mbg) params.mbg = postOptions.mbg;
-  if (postOptions.quality) params.q = postOptions.quality;
-  if (postOptions.compression) params.l = postOptions.compression;
-  if (postOptions.lossless) params.ll = postOptions.lossless;
-  if (postOptions.bg) params.bg = postOptions.bg;
-  if (postOptions.rbg) params.rbg = postOptions.rbg;
-  if (postOptions.blur) params.blur = postOptions.blur;
-  if (postOptions.sharp) params.sharp = postOptions.sharp;
-  if (postOptions.sharpf) params.sharpf = postOptions.sharpf;
-  if (postOptions.sharpj) params.sharpj = postOptions.sharpj;
-  if (postOptions.con) params.con = postOptions.con;
-  if (postOptions.bri) params.bri = postOptions.bri;
-  if (postOptions.gam) params.gam = postOptions.gam;
-  if (postOptions.sat) params.sat = postOptions.sat;
-  if (postOptions.hue) params.hue = postOptions.hue;
-  if (postOptions.mod) {
+  if (postOptions.mask !== null) params.mask = postOptions.mask;
+  if (postOptions.mtrim !== null) params.mtrim = postOptions.mtrim;
+  if (postOptions.mbg !== null) params.mbg = postOptions.mbg;
+  if (postOptions.quality !== null) params.q = postOptions.quality;
+  if (postOptions.compression !== null) params.l = postOptions.compression;
+  if (postOptions.lossless !== null) params.ll = postOptions.lossless;
+  if (postOptions.bg !== null) params.bg = postOptions.bg;
+  if (postOptions.rbg !== null) params.rbg = postOptions.rbg;
+  if (postOptions.blur !== null) params.blur = postOptions.blur;
+  if (postOptions.sharp !== null) params.sharp = postOptions.sharp;
+  if (postOptions.sharpf !== null) params.sharpf = postOptions.sharpf;
+  if (postOptions.sharpj !== null) params.sharpj = postOptions.sharpj;
+  if (postOptions.con !== null) params.con = postOptions.con;
+  if (postOptions.bri !== null) params.bri = postOptions.bri;
+  if (postOptions.gam !== null) params.gam = postOptions.gam;
+  if (postOptions.sat !== null) params.sat = postOptions.sat;
+  if (postOptions.hue !== null) params.hue = postOptions.hue;
+  if (postOptions.mod !== null) {
     params.mod = Array.isArray(postOptions.mod)
       ? postOptions.mod.join(",")
       : postOptions.mod;
   }
-  if (postOptions.tint) params.tint = postOptions.tint;
-  if (postOptions.filt) params.filt = postOptions.filt;
-  if (postOptions.start) params.start = postOptions.start;
-  if (postOptions.stop) params.stop = postOptions.stop;
-  if (postOptions.ro) params.ro = postOptions.ro;
-  if (postOptions.flip) params.flip = postOptions.flip;
-  if (postOptions.flop) params.flop = postOptions.flop;
-  if (postOptions.output) params.output = postOptions.output;
-  if (postOptions.encoding) params.encoding = postOptions.encoding;
-  if (postOptions.we) params.we = postOptions.we;
-  if (postOptions.af) params.af = postOptions.af;
-  if (postOptions.il) params.il = postOptions.il;
-  if (postOptions.maxage) params.maxage = postOptions.maxage;
-  if (postOptions.page) params.page = postOptions.page;
-  if (postOptions.n) params.n = postOptions.n;
-  if (postOptions.filename) params.filename = postOptions.filename;
-  if (postOptions.default) params.default = postOptions.default;
+  if (postOptions.tint !== null) params.tint = postOptions.tint;
+  if (postOptions.filt !== null) params.filt = postOptions.filt;
+  if (postOptions.start !== null) params.start = postOptions.start;
+  if (postOptions.stop !== null) params.stop = postOptions.stop;
+  if (postOptions.ro !== null) params.ro = postOptions.ro;
+  if (postOptions.flip !== null) params.flip = postOptions.flip;
+  if (postOptions.flop !== null) params.flop = postOptions.flop;
+  if (postOptions.output !== null) params.output = postOptions.output;
+  if (postOptions.encoding !== null) params.encoding = postOptions.encoding;
+  if (postOptions.we !== null) params.we = postOptions.we;
+  if (postOptions.af !== null) params.af = postOptions.af;
+  if (postOptions.il !== null) params.il = postOptions.il;
+  if (postOptions.maxage !== null) params.maxage = postOptions.maxage;
+  if (postOptions.page !== null) params.page = postOptions.page;
+  if (postOptions.n !== null) params.n = postOptions.n;
+  if (postOptions.filename !== null) params.filename = postOptions.filename;
+  if (postOptions.default !== null) params.default = postOptions.default;
+  // Log parameters for debugging
+  console.log("URL Parameters:", JSON.stringify(params, null, 2));
   return params;
 }
 
@@ -299,14 +305,21 @@ function transformUrl(
   if (src.endsWith(".svg")) return src;
 
   if (!isNative) {
-    const params = { url: full_url_for.call(hexo, src), default: full_url_for.call(hexo, src) };
+    const params = {
+      url: full_url_for.call(hexo, src),
+      default: full_url_for.call(hexo, src),
+    };
     if (width) {
       params.w = width;
       if (!custom.we && custom.we !== false) params.we = "";
     }
     if (height) params.h = height;
     if (format) params.output = format;
-    return prefix + stringify({ ...params, ...createParams(custom) });
+    const finalParams = { ...params, ...createParams(custom) };
+    // Log the final URL for debugging
+    const url = prefix + stringify(finalParams);
+    console.log("Generated URL:", url);
+    return url;
   }
   let opts = "";
   if (width) opts += `,fit=scale-down,w=${width}`;
