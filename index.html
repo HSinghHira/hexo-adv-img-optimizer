@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hexo-adv-img-optimizer Documentation</title>
+  <meta name="description" content="A Hexo plugin for optimizing images using wsrv.nl's fast CDN, with support for WebP, responsive images, and per-post customization.">
+  <meta name="keywords" content="A, Hexo, plugin, for, optimizing, images, using, wsrv.nl's, fast, CDN,, MIT, documentation">
+  <meta name="author" content="Harman Singh Hira">
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://me.hsinghhira.me">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://git.hsinghhira.me/build-a-npm/favicon.png">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="hexo-adv-img-optimizer Documentation">
+  <meta property="og:description" content="A Hexo plugin for optimizing images using wsrv.nl's fast CDN, with support for WebP, responsive images, and per-post customization.">
+  <meta property="og:image" content="https://dynamic-og-image-generator.vercel.app/api/generate?title=hexo-adv-img-optimizer%20Documentation&author=Harman%20Singh%20Hira&avatar=https://github.com/hsinghhira.png&websiteUrl=https%3A%2F%2Fme.hsinghhira.me&theme=github">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/hsinghhira/hexo-adv-img-optimizer.git">
+  <meta property="og:site_name" content="hexo-adv-img-optimizer Documentation">
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="hexo-adv-img-optimizer Documentation">
+  <meta name="twitter:description" content="A Hexo plugin for optimizing images using wsrv.nl's fast CDN, with support for WebP, responsive images, and per-post customization.">
+  <meta name="twitter:image" content="https://dynamic-og-image-generator.vercel.app/api/generate?title=hexo-adv-img-optimizer%20Documentation&author=Harman%20Singh%20Hira&avatar=https://github.com/hsinghhira.png&websiteUrl=https%3A%2F%2Fme.hsinghhira.me&theme=github">
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "hexo-adv-img-optimizer Documentation",
+      "description": "A Hexo plugin for optimizing images using wsrv.nl's fast CDN, with support for WebP, responsive images, and per-post customization.",
+      "author": {
+        "@type": "Person",
+        "name": "Harman Singh Hira"
+      },
+      "license": "https://spdx.org/licenses/MIT.html",
+      "codeRepository": "git+https://github.com/hsinghhira/hexo-adv-img-optimizer.git",
+      "programmingLanguage": "JavaScript"
+    }
+  </script>
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --bg-dark: #0f0f23;
+      --text-light: #2c3e50;
+      --text-dark: #e8e8e8;
+      --accent: #667eea;
+      --accent-hover: #764ba2;
+      --code-bg-light: #f8f9fa;
+      --code-bg-dark: #1a1a2e;
+      --border-color-light: #e1e8ed;
+      --border-color-dark: #2a2a3e;
+      --header-bg-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --header-bg-dark: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --nav-bg-light: rgba(102, 126, 234, 0.03);
+      --nav-bg-dark: rgba(26, 26, 46, 0.6);
+      --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.3);
+      --table-stripe-light: #f8f9fa;
+      --table-stripe-dark: #1a1a2e;
+    }
+
+    [data-theme="light"] {
+      --bg: var(--bg-light);
+      --text: var(--text-light);
+      --code-bg: var(--code-bg-light);
+      --border-color: var(--border-color-light);
+      --header-bg: var(--header-bg-light);
+      --nav-bg: var(--nav-bg-light);
+      --shadow: var(--shadow-light);
+      --table-stripe: var(--table-stripe-light);
+    }
+
+    [data-theme="dark"] {
+      --bg: var(--bg-dark);
+      --text: var(--text-dark);
+      --code-bg: var(--code-bg-dark);
+      --border-color: var(--border-color-dark);
+      --header-bg: var(--header-bg-dark);
+      --nav-bg: var(--nav-bg-dark);
+      --shadow: var(--shadow-dark);
+      --table-stripe: var(--table-stripe-dark);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .header {
+      background: var(--header-bg);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      border: none;
+      padding: 0;
+    }
+
+    .header p {
+      margin: 1rem 0 0 0;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      z-index: 1004;
+      background: rgba(102, 126, 234, 0.95);
+      backdrop-filter: blur(10px);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .menu-toggle:hover {
+      background: rgba(118, 75, 162, 0.95);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+
+    .menu-toggle:active {
+      transform: translateY(0);
+    }
+
+    .hamburger {
+      width: 20px;
+      height: 16px;
+      position: relative;
+      transform: rotate(0deg);
+      transition: 0.3s ease-in-out;
+    }
+
+    .hamburger span {
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: white;
+      border-radius: 2px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.3s ease-in-out;
+    }
+
+    .hamburger span:nth-child(1) {
+      top: 0px;
+    }
+
+    .hamburger span:nth-child(2) {
+      top: 7px;
+    }
+
+    .hamburger span:nth-child(3) {
+      top: 14px;
+    }
+
+    .menu-toggle.active .hamburger span:nth-child(1) {
+      top: 7px;
+      transform: rotate(135deg);
+    }
+
+    .menu-toggle.active .hamburger span:nth-child(2) {
+      opacity: 0;
+      left: -20px;
+    }
+
+    .menu-toggle.active .hamburger span:nth-child(3) {
+      top: 7px;
+      transform: rotate(-135deg);
+    }
+
+    nav {
+      width: 320px;
+      padding: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(15px);
+      border-right: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      height: auto;
+      max-height: none;
+      overflow-y: visible;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow);
+    }
+
+    .nav-header {
+      padding: 2rem 2rem 1rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      position: relative;
+    }
+
+    .nav-header h3 {
+      margin: 0 0 1rem 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .nav-close {
+      display: none;
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: rgba(102, 126, 234, 0.95);
+      backdrop-filter: blur(10px);
+      border: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      z-index: 1005;
+    }
+
+    .nav-close:hover {
+      background: rgba(118, 75, 162, 0.95);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .nav-close:active {
+      transform: translateY(0);
+    }
+
+    .nav-close .close-icon {
+      width: 16px;
+      height: 16px;
+      position: relative;
+    }
+
+    .nav-close .close-icon span {
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: white;
+      border-radius: 2px;
+      top: 50%;
+      left: 0;
+      transition: 0.3s ease-in-out;
+    }
+
+    .nav-close .close-icon span:nth-child(1) {
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .nav-close .close-icon span:nth-child(2) {
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+    .nav-close.show {
+      display: flex;
+    }
+
+    .theme-toggle {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+      color: white;
+      border: none;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .theme-toggle:active {
+      transform: translateY(0);
+    }
+
+    .nav-content {
+      padding: 2rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    nav li {
+      margin: 0.5rem 0;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.5rem 1.25rem;
+      display: block;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+    }
+
+    nav a:hover::before {
+      left: 0;
+    }
+
+    nav a:hover {
+      color: white;
+      transform: translateX(8px);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .container {
+      display: flex;
+      min-height: calc(100vh - 180px);
+    }
+
+    main {
+      flex: 1;
+      padding: 3rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    h2 {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    h3 {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.3rem;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    blockquote {
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.5rem;
+      background: var(--code-bg);
+      margin: 1.5rem 0;
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      position: relative;
+    }
+
+    blockquote::before {
+      content: '"';
+      font-size: 3rem;
+      color: var(--accent);
+      position: absolute;
+      top: -0.5rem;
+      left: 0.5rem;
+      opacity: 0.3;
+    }
+
+    code {
+      background-color: var(--code-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9em;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    pre {
+      background: var(--code-bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 2rem 0;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9em;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: var(--text);
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 2rem 0;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg);
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.85rem;
+    }
+
+    tr:nth-child(even) {
+      background: var(--table-stripe);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: none;
+    }
+
+    ul,
+    ol {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin: 0 0.25rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9em;
+      color: var(--text);
+      opacity: 0.7;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      background: var(--nav-bg);
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .header p {
+        font-size: 1rem;
+      }
+
+      nav {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        bottom: 0;
+        background: var(--bg);
+        width: 320px;
+        z-index: 1003;
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: 1px solid var(--border-color);
+        box-shadow: 4px 0 25px rgba(0, 0, 0, 0.25);
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      nav.show {
+        left: 0;
+      }
+
+      .nav-close {
+        display: none;
+      }
+
+      .menu-toggle.active {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-2px) scale(0.8);
+        pointer-events: none;
+      }
+
+      .container {
+        flex-direction: column;
+      }
+
+      main {
+        padding: 2rem 1rem;
+        margin-left: 0;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    main>* {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1002;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay" id="overlay"></div>
+  <button class="menu-toggle" id="menuToggle" onclick="toggleNav()">
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </button>
+  <div class="header">
+    <div class="header-content">
+      <h1>📦 hexo-adv-img-optimizer Documentation</h1>
+      <p>A Hexo plugin for optimizing images using wsrv.nl's fast CDN, with support for WebP, responsive images, and per-post customization.</p>
+    </div>
+  </div>
+  <div class="container">
+    <nav id="toc">
+      <div class="nav-header">
+        <button class="theme-toggle" onclick="toggleTheme()">
+          <span id="themeIcon">🌙</span>
+          <span id="themeText">Dark Mode</span>
+        </button>
+      </div>
+      <div class="nav-content">
+        <ul id="tocList">
+          <!-- Table of contents will be generated by JavaScript -->
+        </ul>
+      </div>
+    </nav>
+    <button class="nav-close" onclick="closeNav()">
+      <div class="close-icon">
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    <main>
+      <h1>Hexo Advanced Image Optimizer Plugin</h1>
+<p>The Hexo Advanced Image Optimizer Plugin enhances your Hexo site by leveraging the power of <code>wsrv.nl</code>, a high-performance image cache and resize service. Powered by Cloudflare’s CDN, it delivers images from over 300 global datacenters, ensuring lightning-fast load times and optimal performance. With support for advanced image processing using technologies like nginx and libvips, this plugin transforms and optimizes images on-the-fly. It’s open-source, free to use, and seamlessly integrates with Hexo to process markdown images, cover images, CSS background images, and <code>&lt;object&gt;</code> tags.</p>
+<h2>Installation</h2>
+<p>Run the (any) following command in your Hexo project directory to install the plugin:</p>
+<pre><code class="language-bash">npm install hexo-adv-img-optimizer --save
+</code></pre>
+<pre><code class="language-bash">bun add hexo-adv-img-optimizer --save
+</code></pre>
+<pre><code class="language-bash">pnpm install hexo-adv-img-optimizer --save
+</code></pre>
+<h2>Usage</h2>
+<p>After installing the plugin, all image urls will be converted to CDN urls automatically. For example, the origin markdown file is</p>
+<pre><code class="language-md">![Image Caption](https://wsrv.nl/lichtenstein.jpg)
+</code></pre>
+<p>Then it will be converted to</p>
+<pre><code class="language-md">![Image Caption](https://images.weserv.nl/?url=https://wsrv.nl/lichtenstein.jpg)
+</code></pre>
+<p>The local image urls will be also converted. For example, the original file is</p>
+<pre><code class="language-md">![Image Caption](/img/anti996.png)
+</code></pre>
+<p>It will be rendered as</p>
+<pre><code class="language-md">![Image Caption](https://images.weserv.nl/?url=https://example.com/img/anti996.png)
+</code></pre>
+<p>where <code>https://example.com</code> is the url of your blog that you set in <code>_config.yml</code>.</p>
+<h2>Configuration</h2>
+<p>The plugin can be configured globally in Hexo&#39;s <code>_config.yml</code> file under the <code>cdn</code> section or per post using front-matter in Markdown files. Front-matter settings override global settings for specific posts.</p>
+<ol>
+<li>Open your Hexo project&#39;s <code>_config.yml</code> file.</li>
+<li>Add a <code>cdn</code> section to configure global settings (see <a href="#configuration">Configuration</a> below).<br>Example:</li>
+</ol>
+<pre><code class="language-yaml">cdn:
+  cdn_server: //wsrv.nl
+  use_webp: true
+  max_width: [1920, 1200, 800, 400]
+</code></pre>
+<h3>Global Configuration (_config.yml)</h3>
+<p>Add a <code>cdn</code> section to <code>_config.yml</code> to set default options for all images. All options are optional, and defaults are applied when not specified.</p>
+<pre><code class="language-yaml">cdn:
+  cdn_server: //wsrv.nl
+  native: false
+  use_webp: true
+  max_width: 1200
+  filename: default-image
+  brightness: 0
+  quality: 75
+  fit: cover
+  .
+  .
+  .
+</code></pre>
+<h3>Per-Post Configuration (Front-Matter)</h3>
+<p>Add a <code>cdn</code> section to a post’s front-matter to override global settings for that post’s images (e.g., cover image, markdown images, background images). For example:</p>
+<pre><code class="language-yaml">---
+title: My Post
+cdn:
+  brightness: 20
+  filename: post-specific-image
+  quality: 80
+  fit: contain
+  .
+  .
+  .
+---
+</code></pre>
+<h3>Available Configuration Options</h3>
+<p>Below is a list of all available configuration options, which can be set in <code>_config.yml</code> or post front-matter. Most options support both full names (e.g., <code>brightness</code>) and aliases (e.g., <code>bri</code>) for compatibility with the CDN’s query parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Alias</th>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cdn_server</code></td>
+<td><code>server</code></td>
+<td>String</td>
+<td>CDN server URL (default: <code>https://images.weserv.nl</code>).</td>
+<td><code>https://images.weserv.nl</code></td>
+</tr>
+<tr>
+<td><code>native</code></td>
+<td></td>
+<td>Boolean</td>
+<td>Use Cloudflare native resize instead of <code>images.weserv.nl</code> (default: <code>false</code>).</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>use_webp</code></td>
+<td><code>cdn_use_webp</code></td>
+<td>Boolean</td>
+<td>Enable WebP format in ``elements (default:<code>false</code>).</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>max_width</code></td>
+<td></td>
+<td>Number or Array</td>
+<td>Maximum width(s) for responsive images (e.g., <code>[1200, 800, 400]</code>).</td>
+<td><code>1200</code> or <code>[1200, 800]</code></td>
+</tr>
+<tr>
+<td><code>exclude_domains</code></td>
+<td></td>
+<td>Array</td>
+<td>Domains to exclude from CDN processing.</td>
+<td><code>[&quot;example.com&quot;, &quot;cdn.com&quot;]</code></td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td><code>h</code></td>
+<td>Number</td>
+<td>Image height in pixels.</td>
+<td><code>600</code></td>
+</tr>
+<tr>
+<td><code>device_pixel_ratio</code></td>
+<td><code>dpr</code></td>
+<td>Number</td>
+<td>Device pixel ratio for high-DPI displays.</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>fit</code></td>
+<td></td>
+<td>String</td>
+<td>Image fit mode (<code>inside</code>, <code>outside</code>, <code>cover</code>, <code>fill</code>, <code>contain</code>).</td>
+<td><code>cover</code></td>
+</tr>
+<tr>
+<td><code>alignment</code></td>
+<td><code>a</code></td>
+<td>String</td>
+<td>Image alignment (<code>center</code>, <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>, <code>focal</code>).</td>
+<td><code>center</code></td>
+</tr>
+<tr>
+<td><code>focal_point_x</code></td>
+<td><code>fpx</code></td>
+<td>Number (0.0-1.0)</td>
+<td>X-coordinate for focal point (used with <code>alignment: focal</code>).</td>
+<td><code>0.5</code></td>
+</tr>
+<tr>
+<td><code>focal_point_y</code></td>
+<td><code>fpy</code></td>
+<td>Number (0.0-1.0)</td>
+<td>Y-coordinate for focal point (used with <code>alignment: focal</code>).</td>
+<td><code>0.5</code></td>
+</tr>
+<tr>
+<td><code>crop</code></td>
+<td><code>c</code></td>
+<td>String or Array</td>
+<td>Crop coordinates <code>[x,y,w,h]</code> or string.</td>
+<td><code>[10,20,100,100]</code> or <code>10,20,100,100</code></td>
+</tr>
+<tr>
+<td><code>precrop</code></td>
+<td></td>
+<td>String or Array</td>
+<td>Pre-resize crop coordinates <code>[x,y,w,h]</code> or string.</td>
+<td><code>[10,20,100,100]</code></td>
+</tr>
+<tr>
+<td><code>trim</code></td>
+<td></td>
+<td>Boolean or Number</td>
+<td>Trim boring pixels (<code>true</code> for default 10, or 1-254).</td>
+<td><code>true</code> or <code>20</code></td>
+</tr>
+<tr>
+<td><code>mask</code></td>
+<td></td>
+<td>String</td>
+<td>Mask shape (<code>circle</code>, <code>ellipse</code>, <code>triangle</code>, <code>pentagon</code>, <code>hexagon</code>, <code>square</code>, <code>star</code>, <code>heart</code>).</td>
+<td><code>circle</code></td>
+</tr>
+<tr>
+<td><code>mask_trim</code></td>
+<td><code>mtrim</code></td>
+<td>Boolean</td>
+<td>Remove whitespace from mask.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>mask_background</code></td>
+<td><code>mbg</code></td>
+<td>String</td>
+<td>Mask background color (hex without <code>#</code>).</td>
+<td><code>ffffff</code></td>
+</tr>
+<tr>
+<td><code>quality</code></td>
+<td><code>q</code></td>
+<td>Number (0-100)</td>
+<td>Image quality.</td>
+<td><code>80</code></td>
+</tr>
+<tr>
+<td><code>compression</code></td>
+<td><code>l</code></td>
+<td>Number (0-9)</td>
+<td>Compression level.</td>
+<td><code>6</code></td>
+</tr>
+<tr>
+<td><code>lossless</code></td>
+<td><code>ll</code></td>
+<td>Boolean</td>
+<td>Use lossless WebP compression (requires WebP output).</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>background</code></td>
+<td><code>bg</code></td>
+<td>String</td>
+<td>Background color (hex without <code>#</code>).</td>
+<td><code>000000</code></td>
+</tr>
+<tr>
+<td><code>rotation_background</code></td>
+<td><code>rbg</code></td>
+<td>String</td>
+<td>Background color for rotation (hex without <code>#</code>).</td>
+<td><code>ffffff</code></td>
+</tr>
+<tr>
+<td><code>blur</code></td>
+<td></td>
+<td>Number (0.3-1000)</td>
+<td>Apply blur effect.</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>sharpen</code></td>
+<td><code>sharp</code></td>
+<td>Number (0-10)</td>
+<td>Sharpen effect.</td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>sharpen_flat</code></td>
+<td><code>sharpf</code></td>
+<td>Number (0-1000000)</td>
+<td>Sharpen flat areas.</td>
+<td><code>100</code></td>
+</tr>
+<tr>
+<td><code>sharpen_jagged</code></td>
+<td><code>sharpj</code></td>
+<td>Number (0-1000000)</td>
+<td>Sharpen jagged areas.</td>
+<td><code>100</code></td>
+</tr>
+<tr>
+<td><code>contrast</code></td>
+<td><code>con</code></td>
+<td>Number (-100 to 100)</td>
+<td>Adjust contrast.</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>brightness</code></td>
+<td><code>bri</code></td>
+<td>Number (-100 to 100)</td>
+<td>Adjust brightness.</td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td><code>gamma</code></td>
+<td><code>gam</code></td>
+<td>Number (1.0-3.0)</td>
+<td>Adjust gamma.</td>
+<td><code>1.5</code></td>
+</tr>
+<tr>
+<td><code>saturation</code></td>
+<td><code>sat</code></td>
+<td>Number</td>
+<td>Saturation multiplier.</td>
+<td><code>1.2</code></td>
+</tr>
+<tr>
+<td><code>hue</code></td>
+<td></td>
+<td>Number</td>
+<td>Hue rotation in degrees.</td>
+<td><code>90</code></td>
+</tr>
+<tr>
+<td><code>modulate</code></td>
+<td><code>mod</code></td>
+<td>String or Array</td>
+<td>Brightness, saturation, hue adjustments <code>[b,s,h]</code> or string.</td>
+<td><code>[1.1,1.2,90]</code> or <code>1.1,1.2,90</code></td>
+</tr>
+<tr>
+<td><code>tint</code></td>
+<td></td>
+<td>String</td>
+<td>Tint color (hex without <code>#</code>).</td>
+<td><code>ff0000</code></td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>filt</code></td>
+<td>String</td>
+<td>Apply filter (<code>greyscale</code>, <code>sepia</code>, <code>duotone</code>, <code>negate</code>).</td>
+<td><code>greyscale</code></td>
+</tr>
+<tr>
+<td><code>filter_start</code></td>
+<td><code>start</code></td>
+<td>String</td>
+<td>Duotone start color (hex without <code>#</code>).</td>
+<td><code>000000</code></td>
+</tr>
+<tr>
+<td><code>filter_stop</code></td>
+<td><code>stop</code></td>
+<td>String</td>
+<td>Duotone stop color (hex without <code>#</code>).</td>
+<td><code>ffffff</code></td>
+</tr>
+<tr>
+<td><code>rotation</code></td>
+<td><code>ro</code></td>
+<td>String or Number</td>
+<td>Rotation angle (0-360 or <code>auto</code>).</td>
+<td><code>90</code></td>
+</tr>
+<tr>
+<td><code>flip</code></td>
+<td></td>
+<td>Boolean</td>
+<td>Mirror vertically (up-down).</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>flop</code></td>
+<td></td>
+<td>Boolean</td>
+<td>Mirror horizontally (left-right).</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>output_format</code></td>
+<td><code>output</code></td>
+<td>String</td>
+<td>Output format (<code>jpg</code>, <code>png</code>, <code>gif</code>, <code>webp</code>).</td>
+<td><code>webp</code></td>
+</tr>
+<tr>
+<td><code>encoding</code></td>
+<td></td>
+<td>String</td>
+<td>Encoding type (e.g., <code>base64</code> for data URL).</td>
+<td><code>base64</code></td>
+</tr>
+<tr>
+<td><code>without_enlargement</code></td>
+<td><code>we</code></td>
+<td>Boolean</td>
+<td>Prevent image enlargement.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>adaptive_filter</code></td>
+<td><code>af</code></td>
+<td>Boolean</td>
+<td>Use adaptive filter.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>interlace</code></td>
+<td><code>il</code></td>
+<td>Boolean</td>
+<td>Enable progressive/interlaced rendering.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>max_age</code></td>
+<td><code>maxage</code></td>
+<td>String</td>
+<td>Cache control duration (e.g., <code>1d</code>, <code>1y</code>).</td>
+<td><code>1d</code></td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td></td>
+<td>Number</td>
+<td>Page number for multi-page images (e.g., PDFs).</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td></td>
+<td>Number</td>
+<td>Number of pages to process (-1 for all).</td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td><code>filename</code></td>
+<td></td>
+<td>String</td>
+<td>Custom filename for downloads (default: page title, e.g., <code>hello-example</code>).</td>
+<td><code>custom-image</code></td>
+</tr>
+<tr>
+<td><code>default_image</code></td>
+<td><code>default</code></td>
+<td>String</td>
+<td>Fallback image URL if the original fails.</td>
+<td><code>https://example.com/fallback.jpg</code></td>
+</tr>
+</tbody></table>
+<h3>Notes</h3>
+<ul>
+<li><strong>Priority</strong>: Front-matter options (<code>cdn: ...</code>) in a post override global settings in <code>_config.yml</code>. If neither is set, defaults like the page-title-based filename (<code>hello-example</code> for &quot;Hello Example&quot;) or <code>null</code> are used.</li>
+<li><strong>Aliases</strong>: Use either full names (e.g., <code>brightness</code>) or aliases (e.g., <code>bri</code>) in <code>_config.yml</code> or front-matter.</li>
+<li><strong>Validation</strong>: Ensure values match the expected format (e.g., <code>crop</code> as <code>[10,20,100,100]</code>, <code>brightness</code> as a number between -100 and 100) to avoid errors.</li>
+<li><strong>SVG Exclusion</strong>: SVG images are excluded from CDN processing to preserve their vector format.</li>
+<li><strong>CDN Support</strong>: Verify that your CDN (e.g., <code>images.weserv.nl</code>) supports the specified options. Invalid values may be ignored.</li>
+<li><strong>Testing</strong>: After configuration, run <code>hexo generate</code> and inspect the generated HTML to confirm CDN URLs include the desired parameters (e.g., <code>https://images.weserv.nl/?url=...&amp;bri=20&amp;filename=post-specific-image</code>).</li>
+</ul>
+<h3>Troubleshooting</h3>
+<ul>
+<li><strong>Images Not Processed</strong>: Ensure the plugin is installed correctly. Check for <code>exclude_domains</code> that might skip certain images.</li>
+<li><strong>Incorrect Filenames</strong>: Verify the <code>filename</code> setting in <code>_config.yml</code> or front-matter. If using the page-title default, ensure posts have a <code>title</code> in their front-matter.</li>
+<li><strong>CDN Errors</strong>: Confirm that the <code>cdn_server</code> supports the configured options (e.g., <code>images.weserv.nl</code> documentation: <a href="https://images.weserv.nl/">https://images.weserv.nl/</a>).</li>
+<li><strong>WebP Not Working</strong>: Set <code>use_webp: true</code> and ensure the browser supports WebP. Check if <code>output_format: webp</code> is set correctly for specific images.</li>
+</ul>
+<p>For additional help or feature requests, please open an issue on the plugin’s repository or contact the maintainer.</p>
+<h2>Special Thanks</h2>
+<ul>
+<li><a href="https://github.com/njzjz/hexo-image-cloudflare">Jinzhe Zeng</a></li>
+<li><a href="https://github.com/hexojs/hexo-util">hexo-util</a></li>
+<li><a href="https://github.com/jonschlinkert/html-tag">html-tag</a></li>
+</ul>
+<h2>📄 License</h2>
+<p>MIT License</p>
+<p>Copyright (c) 2025 Harman Singh Hira</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy<br>of this software and associated documentation files (the &quot;Software&quot;), to deal<br>in the Software without restriction, including without limitation the rights<br>to use, copy, modify, merge, publish, distribute, sublicense, and/or sell<br>copies of the Software, and to permit persons to whom the Software is<br>furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all<br>copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,<br>OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE<br>SOFTWARE.</p>
+
+      <footer>
+        <p>&copy; 2025 MIT — hexo-adv-img-optimizer Documentation — Created by <a href="https://me.hsinghhira.me" target="_blank">Harman Singh Hira</a></p>
+        <p>Powered by ❤️ & <a href="https://www.npmjs.com/package/build-a-npm" target="_blank">Build-a-NPM</a></p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute("data-theme");
+      const next = current === "dark" ? "light" : "dark";
+      html.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      const themeIcon = document.getElementById("themeIcon");
+      const themeText = document.getElementById("themeText");
+      if (next === "dark") {
+        themeIcon.textContent = "🌙";
+        themeText.textContent = "Dark Mode";
+      } else {
+        themeIcon.textContent = "☀️";
+        themeText.textContent = "Light Mode";
+      }
+      document.body.style.transition = 'all 0.3s ease';
+      setTimeout(() => {
+        document.body.style.transition = '';
+      }, 300);
+    }
+
+    function toggleNav() {
+      const nav = document.getElementById("toc");
+      const overlay = document.getElementById("overlay");
+      const menuToggle = document.getElementById("menuToggle");
+      const closeBtn = document.querySelector(".nav-close");
+      nav.classList.toggle("show");
+      overlay.classList.toggle("show");
+      menuToggle.classList.toggle("active");
+      closeBtn.classList.toggle("show");
+      if (nav.classList.contains("show")) {
+        overlay.addEventListener('click', closeNav);
+      } else {
+        overlay.removeEventListener('click', closeNav);
+      }
+    }
+
+    function closeNav() {
+      const nav = document.getElementById("toc");
+      const overlay = document.getElementById("overlay");
+      const menuToggle = document.getElementById("menuToggle");
+      const closeBtn = document.querySelector(".nav-close");
+      nav.classList.remove("show");
+      overlay.classList.remove("show");
+      menuToggle.classList.remove("active");
+      closeBtn.classList.remove("show");
+      overlay.removeEventListener('click', closeNav);
+    }
+
+    function generateTOC() {
+      const headers = document.querySelectorAll('main h2');
+      const tocList = document.getElementById('tocList');
+      
+      headers.forEach((header, index) => {
+        // Create an ID if it doesn't exist
+        if (!header.id) {
+          header.id = `header-${index}`;
+        }
+        
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${header.id}`;
+        a.textContent = header.textContent;
+        
+        // Add some styling based on header level
+        const level = parseInt(header.tagName.charAt(1));
+        if (level > 2) {
+          a.style.paddingLeft = `${(level - 2) * 1}rem`;
+          a.style.fontSize = '0.9rem';
+          a.style.opacity = '0.8';
+        }
+        
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+    }
+
+    function setupSmoothScrolling() {
+      document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            if (window.innerWidth <= 768) {
+              closeNav();
+            }
+          }
+        });
+      });
+    }
+
+    function initializeTheme() {
+      const saved = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", saved);
+      const themeIcon = document.getElementById("themeIcon");
+      const themeText = document.getElementById("themeText");
+      if (saved === "dark") {
+        themeIcon.textContent = "🌙";
+        themeText.textContent = "Dark Mode";
+      } else {
+        themeIcon.textContent = "☀️";
+        themeText.textContent = "Light Mode";
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      generateTOC();
+      setupSmoothScrolling();
+      initializeTheme();
+      document.querySelectorAll('table').forEach(table => {
+        if (!table.parentElement.classList.contains('table-container')) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'table-container';
+          table.parentNode.insertBefore(wrapper, table);
+          wrapper.appendChild(table);
+        }
+      });
+    });
+
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '0';
+      document.body.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        document.body.style.opacity = '1';
+        document.body.style.transform = 'translateY(0)';
+      }, 100);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeNav();
+      }
+    });
+  </script>
+</body>
+</html>

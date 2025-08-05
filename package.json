@@ -1,6 +1,6 @@
 {
-  "name": "@hsinghhira/hexo-adv-img-optimizer",
-  "version": "0.1.15",
+  "name": "hexo-adv-img-optimizer",
+  "version": "0.1.16",
   "author": {
     "name": "Harman Singh Hira",
     "url": "https://me.hsinghhira.me"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HSinghHira/hexo-adv-img-optimizer"
+    "url": "git+https://github.com/hsinghhira/hexo-adv-img-optimizer.git"
   },
   "bugs": {
     "url": "https://github.com/HSinghHira/hexo-adv-img-optimizer/issues"
@@ -27,7 +27,24 @@
     "responsive-images"
   ],
   "scripts": {
-    "push": "node publish.js && git add -A && git commit -m 'Update' && git push"
+    "push": "node publish.js && git add -A && git commit -m 'Update' && git push",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "index": "node node_modules/build-a-npm/lib/generateIndex.js",
+    "console": "node node_modules/build-a-npm/lib/publishConsole.js",
+    "git": "npm run index && git add . && git commit -m \"chore: updates\" && git branch -M main && (git remote get-url origin || git remote add origin https://github.com/hsinghhira/hexo-adv-img-optimizer.git) && git push",
+    "publish": "npm run publish:patch",
+    "publish:patch": "node node_modules/build-a-npm/publish.js --patch --npmjs --github && npm run git && npm run console",
+    "publish:minor": "node node_modules/build-a-npm/publish.js --minor --npmjs --github && npm run git && npm run console",
+    "publish:major": "node node_modules/build-a-npm/publish.js --major --npmjs --github && npm run git && npm run console",
+    "pub": "npm run publish:patch",
+    "pub:pat": "npm run publish:patch",
+    "pub:min": "npm run publish:minor",
+    "pub:maj": "npm run publish:major",
+    "nogit:patch": "node node_modules/build-a-npm/publish.js --patch  --npmjs --github && npm run console",
+    "nogit:minor": "node node_modules/build-a-npm/publish.js --minor  --npmjs --github && npm run console",
+    "nogit:major": "node node_modules/build-a-npm/publish.js --major  --npmjs --github && npm run console",
+    "do": "npm run git && node publish.js --patch --github --npmjs && npm run console",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "hexo-util": "^2.2.0",
@@ -35,10 +52,13 @@
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
-    "ts-jest": "^27.1.5"
+    "ts-jest": "^27.1.5",
+    "build-a-npm": "*",
+    "marked": "^14.1.2"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
-    "access": "public"
-  }
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "type": "commonjs"
 }
