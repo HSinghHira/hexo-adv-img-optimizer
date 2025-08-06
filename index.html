@@ -684,17 +684,19 @@
       </div>
     </button>
     <main>
-      <h1>Hexo Advanced Image Optimizer Plugin</h1>
+      <h2>🌟 Overview</h2>
 <p>The Hexo Advanced Image Optimizer Plugin enhances your Hexo site by leveraging the power of <code>wsrv.nl</code>, a high-performance image cache and resize service. Powered by Cloudflare’s CDN, it delivers images from over 300 global datacenters, ensuring lightning-fast load times and optimal performance. With support for advanced image processing using technologies like nginx and libvips, this plugin transforms and optimizes images on-the-fly. It’s open-source, free to use, and seamlessly integrates with Hexo to process markdown images, cover images, CSS background images, and <code>&lt;object&gt;</code> tags.</p>
-<h2>Installation</h2>
+<hr>
+<p>📦 Installation</p>
 <p>Run the (any) following command in your Hexo project directory to install the plugin:</p>
-<pre><code class="language-bash">npm install hexo-adv-img-optimizer --save
+<pre><code class="language-bash">npm i hexo-adv-img-optimizer --save
 </code></pre>
-<pre><code class="language-bash">bun add hexo-adv-img-optimizer --save
+<pre><code class="language-bash">bun i hexo-adv-img-optimizer --save
 </code></pre>
-<pre><code class="language-bash">pnpm install hexo-adv-img-optimizer --save
+<pre><code class="language-bash">pnpm i hexo-adv-img-optimizer --save
 </code></pre>
-<h2>Usage</h2>
+<hr>
+<p>🚀 Usage</p>
 <p>After installing the plugin, all image urls will be converted to CDN urls automatically. For example, the origin markdown file is</p>
 <pre><code class="language-md">![Image Caption](https://wsrv.nl/lichtenstein.jpg)
 </code></pre>
@@ -708,7 +710,8 @@
 <pre><code class="language-md">![Image Caption](https://images.weserv.nl/?url=https://example.com/img/anti996.png)
 </code></pre>
 <p>where <code>https://example.com</code> is the url of your blog that you set in <code>_config.yml</code>.</p>
-<h2>Configuration</h2>
+<hr>
+<h2>🔄 Configuration</h2>
 <p>The plugin can be configured globally in Hexo&#39;s <code>_config.yml</code> file under the <code>cdn</code> section or per post using front-matter in Markdown files. Front-matter settings override global settings for specific posts.</p>
 <ol>
 <li>Open your Hexo project&#39;s <code>_config.yml</code> file.</li>
@@ -719,7 +722,7 @@
   use_webp: true
   max_width: [1920, 1200, 800, 400]
 </code></pre>
-<h3>Global Configuration (_config.yml)</h3>
+<h3>🌍 Global Configuration (_config.yml)</h3>
 <p>Add a <code>cdn</code> section to <code>_config.yml</code> to set default options for all images. All options are optional, and defaults are applied when not specified.</p>
 <pre><code class="language-yaml">cdn:
   cdn_server: //wsrv.nl
@@ -734,7 +737,7 @@
   .
   .
 </code></pre>
-<h3>Per-Post Configuration (Front-Matter)</h3>
+<h3>📬 Per-Post Configuration (Front-Matter)</h3>
 <p>Add a <code>cdn</code> section to a post’s front-matter to override global settings for that post’s images (e.g., cover image, markdown images, background images). For example:</p>
 <pre><code class="language-yaml">---
 title: My Post
@@ -748,7 +751,7 @@ cdn:
   .
 ---
 </code></pre>
-<h3>Available Configuration Options</h3>
+<h3>📀 Available Configuration Options</h3>
 <p>Below is a list of all available configuration options, which can be set in <code>_config.yml</code> or post front-matter. Most options support both full names (e.g., <code>brightness</code>) and aliases (e.g., <code>bri</code>) for compatibility with the CDN’s query parameters.</p>
 <table>
 <thead>
@@ -1104,7 +1107,8 @@ cdn:
 <td><code>https://example.com/fallback.jpg</code></td>
 </tr>
 </tbody></table>
-<h3>Notes</h3>
+<hr>
+<h2>📝 Notes</h2>
 <ul>
 <li><strong>Priority</strong>: Front-matter options (<code>cdn: ...</code>) in a post override global settings in <code>_config.yml</code>. If neither is set, defaults like the page-title-based filename (<code>hello-example</code> for &quot;Hello Example&quot;) or <code>null</code> are used.</li>
 <li><strong>Aliases</strong>: Use either full names (e.g., <code>brightness</code>) or aliases (e.g., <code>bri</code>) in <code>_config.yml</code> or front-matter.</li>
@@ -1113,7 +1117,8 @@ cdn:
 <li><strong>CDN Support</strong>: Verify that your CDN (e.g., <code>images.weserv.nl</code>) supports the specified options. Invalid values may be ignored.</li>
 <li><strong>Testing</strong>: After configuration, run <code>hexo generate</code> and inspect the generated HTML to confirm CDN URLs include the desired parameters (e.g., <code>https://images.weserv.nl/?url=...&amp;bri=20&amp;filename=post-specific-image</code>).</li>
 </ul>
-<h3>Troubleshooting</h3>
+<hr>
+<h2>🆘 Troubleshooting</h2>
 <ul>
 <li><strong>Images Not Processed</strong>: Ensure the plugin is installed correctly. Check for <code>exclude_domains</code> that might skip certain images.</li>
 <li><strong>Incorrect Filenames</strong>: Verify the <code>filename</code> setting in <code>_config.yml</code> or front-matter. If using the page-title default, ensure posts have a <code>title</code> in their front-matter.</li>
@@ -1121,12 +1126,26 @@ cdn:
 <li><strong>WebP Not Working</strong>: Set <code>use_webp: true</code> and ensure the browser supports WebP. Check if <code>output_format: webp</code> is set correctly for specific images.</li>
 </ul>
 <p>For additional help or feature requests, please open an issue on the plugin’s repository or contact the maintainer.</p>
-<h2>Special Thanks</h2>
+<hr>
+<h2>🤝 Contributing</h2>
+<p>We welcome contributions! To get involved:</p>
+<ol>
+<li>Visit the <a href="https://github.com/HSinghHira/hexo-adv-img-optimizer">GitHub Repository</a>.</li>
+<li>Open an issue for bugs or feature requests.</li>
+<li>Submit a pull request with your changes, following the repository’s guidelines.</li>
+</ol>
+<hr>
+<h2>😍 Special Thanks</h2>
 <ul>
 <li><a href="https://github.com/njzjz/hexo-image-cloudflare">Jinzhe Zeng</a></li>
 <li><a href="https://github.com/hexojs/hexo-util">hexo-util</a></li>
 <li><a href="https://github.com/jonschlinkert/html-tag">html-tag</a></li>
 </ul>
+<hr>
+<h2>📩 Contact me</h2>
+<p>Feel free to contact me related to anything:</p>
+<p>👉 <a href="https://me.hsinghhira.me/contact/">Contact me</a></p>
+<hr>
 <h2>📄 License</h2>
 <p>MIT License</p>
 <p>Copyright (c) 2025 Harman Singh Hira</p>
