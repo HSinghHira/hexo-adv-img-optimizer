@@ -1,6 +1,6 @@
 {
   "name": "hexo-adv-img-optimizer",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "author": {
     "name": "Harman Singh Hira",
     "url": "https://me.hsinghhira.me"
@@ -31,7 +31,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "index": "node node_modules/build-a-npm/lib/generateIndex.js",
     "console": "node node_modules/build-a-npm/lib/publishConsole.js",
-    "git": "npm run index && git add . && git commit -m \"chore: updates\" && git branch -M main && (git remote get-url origin || git remote add origin https://github.com/hsinghhira/hexo-adv-img-optimizer.git) && git push",
+    "git": "npm run index && git add . && git commit -m \"Update to v0.1.16\" && git branch -M main && (git remote get-url origin || git remote add origin https://github.com/hsinghhira/hexo-adv-img-optimizer.git) && git push",
     "publish": "npm run publish:patch",
     "publish:patch": "node node_modules/build-a-npm/publish.js --patch --npmjs --github && npm run git && npm run console",
     "publish:minor": "node node_modules/build-a-npm/publish.js --minor --npmjs --github && npm run git && npm run console",

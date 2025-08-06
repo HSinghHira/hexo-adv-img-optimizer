@@ -1,24 +1,28 @@
-# Hexo Advanced Image Optimizer Plugin
+## 🌟 Overview
 
 The Hexo Advanced Image Optimizer Plugin enhances your Hexo site by leveraging the power of `wsrv.nl`, a high-performance image cache and resize service. Powered by Cloudflare’s CDN, it delivers images from over 300 global datacenters, ensuring lightning-fast load times and optimal performance. With support for advanced image processing using technologies like nginx and libvips, this plugin transforms and optimizes images on-the-fly. It’s open-source, free to use, and seamlessly integrates with Hexo to process markdown images, cover images, CSS background images, and `<object>` tags.
 
-## Installation
+---
+
+📦 Installation
 
 Run the (any) following command in your Hexo project directory to install the plugin:
 
 ```bash
-npm install hexo-adv-img-optimizer --save
+npm i hexo-adv-img-optimizer --save
 ```
 
 ```bash
-bun add hexo-adv-img-optimizer --save
+bun i hexo-adv-img-optimizer --save
 ```
 
 ```bash
-pnpm install hexo-adv-img-optimizer --save
+pnpm i hexo-adv-img-optimizer --save
 ```
 
-## Usage
+---
+
+🚀 Usage
 
 After installing the plugin, all image urls will be converted to CDN urls automatically. For example, the origin markdown file is
 
@@ -46,7 +50,9 @@ It will be rendered as
 
 where `https://example.com` is the url of your blog that you set in `_config.yml`.
 
-## Configuration
+---
+
+## 🔄 Configuration
 
 The plugin can be configured globally in Hexo's `_config.yml` file under the `cdn` section or per post using front-matter in Markdown files. Front-matter settings override global settings for specific posts.
 
@@ -61,7 +67,7 @@ cdn:
   max_width: [1920, 1200, 800, 400]
 ```
 
-### Global Configuration (\_config.yml)
+### 🌍 Global Configuration (\_config.yml)
 
 Add a `cdn` section to `_config.yml` to set default options for all images. All options are optional, and defaults are applied when not specified.
 
@@ -80,7 +86,7 @@ cdn:
   .
 ```
 
-### Per-Post Configuration (Front-Matter)
+### 📬 Per-Post Configuration (Front-Matter)
 
 Add a `cdn` section to a post’s front-matter to override global settings for that post’s images (e.g., cover image, markdown images, background images). For example:
 
@@ -98,7 +104,7 @@ cdn:
 ---
 ```
 
-### Available Configuration Options
+### 📀 Available Configuration Options
 
 Below is a list of all available configuration options, which can be set in `_config.yml` or post front-matter. Most options support both full names (e.g., `brightness`) and aliases (e.g., `bri`) for compatibility with the CDN’s query parameters.
 
@@ -154,7 +160,9 @@ Below is a list of all available configuration options, which can be set in `_co
 | `filename`            |                | String               | Custom filename for downloads (default: page title, e.g., `hello-example`).                     | `custom-image`                       |
 | `default_image`       | `default`      | String               | Fallback image URL if the original fails.                                                       | `https://example.com/fallback.jpg`   |
 
-### Notes
+---
+
+## 📝 Notes
 
 - **Priority**: Front-matter options (`cdn: ...`) in a post override global settings in `_config.yml`. If neither is set, defaults like the page-title-based filename (`hello-example` for "Hello Example") or `null` are used.
 - **Aliases**: Use either full names (e.g., `brightness`) or aliases (e.g., `bri`) in `_config.yml` or front-matter.
@@ -163,7 +171,9 @@ Below is a list of all available configuration options, which can be set in `_co
 - **CDN Support**: Verify that your CDN (e.g., `images.weserv.nl`) supports the specified options. Invalid values may be ignored.
 - **Testing**: After configuration, run `hexo generate` and inspect the generated HTML to confirm CDN URLs include the desired parameters (e.g., `https://images.weserv.nl/?url=...&bri=20&filename=post-specific-image`).
 
-### Troubleshooting
+---
+
+## 🆘 Troubleshooting
 
 - **Images Not Processed**: Ensure the plugin is installed correctly. Check for `exclude_domains` that might skip certain images.
 - **Incorrect Filenames**: Verify the `filename` setting in `_config.yml` or front-matter. If using the page-title default, ensure posts have a `title` in their front-matter.
@@ -172,8 +182,30 @@ Below is a list of all available configuration options, which can be set in `_co
 
 For additional help or feature requests, please open an issue on the plugin’s repository or contact the maintainer.
 
-## Special Thanks
+---
+
+## 🤝 Contributing
+
+We welcome contributions! To get involved:
+
+1. Visit the [GitHub Repository](https://github.com/HSinghHira/hexo-adv-img-optimizer).
+2. Open an issue for bugs or feature requests.
+3. Submit a pull request with your changes, following the repository’s guidelines.
+
+---
+
+## 😍 Special Thanks
 
 - [Jinzhe Zeng](https://github.com/njzjz/hexo-image-cloudflare)
 - [hexo-util](https://github.com/hexojs/hexo-util)
 - [html-tag](https://github.com/jonschlinkert/html-tag)
+
+---
+
+## 📩 Contact me
+
+Feel free to contact me related to anything:
+
+👉 [Contact me](https://me.hsinghhira.me/contact/)
+
+---
